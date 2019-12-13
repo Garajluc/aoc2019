@@ -10,7 +10,7 @@ exports.day3 = {
             for (let i = 0; i < currWire.length; i++) {
                 var moveTO = currWire[i].match(/\d/g).join('');
                 var n = 0;
-                while (moveTO >= n) {
+                while (moveTO > n) {
                     if (currWire[i].includes('R')) {
                         y++;
                     } else if (currWire[i].includes('L')) {
@@ -47,6 +47,15 @@ exports.day3 = {
 
         // Calculate Distance
         // int distance = Math.abs(x1-x0) + Math.abs(y1-y0);
+        var distances = [];
+        this.intersections.map(item => {
+            var x = item.match(/(-)*[0-9]+/g)[0];
+            var y = item.match(/(-)*[0-9]+/g)[1];
+            var distance = Math.abs(x) + Math.abs(y);
+            distances.push(distance);
+        })
+        var min = Math.min.apply(null, distances);
+        console.log(min)
     },
     intersections: ['x-679y-1004',
         'x-1019y-744',
